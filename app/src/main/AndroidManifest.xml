@@ -24,6 +24,9 @@
             android:name=".FactorialActivity"
             android:exported="false" />
         <activity
+            android:name=".GuessGame"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity()
         bindingMain = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingMain.root)
 
-        inicializarBotones()
+        inicializarElementos()
     }
 
-    fun inicializarBotones()
+    private fun inicializarElementos()
     {
         // Guessing Number
         bindingMain.guessGameButton.setOnClickListener{
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity()
 
 
 
-    fun guessingNumbers()
+    private fun guessingNumbers()
     {
         Log.i("Guessing Numbers", "Entrada")
 
@@ -65,18 +65,24 @@ class MainActivity : AppCompatActivity()
         // Verificar que el numero ingresado sea correcto
         if (numeroIngresado in 0..1000)
         {
+            Log.i("Guessing Numbers", "Entrada al if")
             val pasarAGuessingGame = Intent(this, GuessGame::class.java)
+            Log.i("Guessing Numbers", "Flag 1")
             pasarAGuessingGame.putExtra("numeroSugerido", numeroIngresado )
+            Log.i("Guessing Numbers", "Flag 2")
             //startActivity(Intent(this, GuessGame::class.java))
+
+            startActivity(pasarAGuessingGame)
         }
         else
         {
             Toast.makeText(baseContext, "Solo números entre el 0 y el 1000", Toast.LENGTH_LONG).show()
         }
+
     }
 
 
-    fun factorial()
+    private fun factorial()
     {
         Log.i("Factorial", "Entrada")
 
@@ -84,7 +90,7 @@ class MainActivity : AppCompatActivity()
     }
 
 
-    fun fibonacci()
+    private fun fibonacci()
     {
         Log.i("Fibonacci", "Entrada")
 
@@ -92,14 +98,14 @@ class MainActivity : AppCompatActivity()
     }
 
 
-    fun randomGreet()
+    private fun randomGreet()
     {
         Log.i("Random Greet", "Entrada")
 
         // TODO: Verificar el idioma seleccionado en el spinner y pasar a la actividad (RandomGreet)
     }
 
-    fun countries()
+    private fun countries()
     {
         Log.i("Countries", "Entrada")
 
