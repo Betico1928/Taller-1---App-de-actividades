@@ -25,13 +25,21 @@ class GuessGame : AppCompatActivity()
         bindingGuessGame = ActivityGuessGameBinding.inflate(layoutInflater)
         setContentView(bindingGuessGame.root)
 
-        // Recibir el numero del main
-        val numeroRetornado: Int = recibirNumeroDelMain()
+        Log.i("GuessGame", "Numero aleatorio: $numeroAleatorio")
 
+        // Recibir el numero del main
+        var numeroRetornado: Int = recibirNumeroDelMain()
+        Log.i("GuessGame", "Numero retornado: $numeroRetornado")
+
+
+        seguirAdivinando(numeroRetornado)
+        /*
         bindingGuessGame.playButton.setOnClickListener{
-            Log.i("recibirNumeroDelMain", "Ir a play guessing numbers")
-            seguirAdivinando(numeroRetornado)
+            Log.i("GuessGame", "Ir a play guessing numbers")
+
         }
+
+         */
     }
 
     private fun recibirNumeroDelMain(): Int {
@@ -43,8 +51,21 @@ class GuessGame : AppCompatActivity()
 
         if (numeroSugerido != numeroAleatorio)
         {
-            bindingGuessGame.attemptCounter.text = "Attempt Counter: " + attemptCounter
-            return numeroSugerido
+            if (numeroSugerido > numeroAleatorio)
+            {
+                bindingGuessGame.gameStatus.text = "Fallaste, el numero debe ser menor!: "
+
+                bindingGuessGame.attemptCounter.text = "Attempt Counter: " + attemptCounter
+                return numeroSugerido
+            }
+
+            if (numeroSugerido < numeroAleatorio)
+            {
+                bindingGuessGame.gameStatus.text = "Fallaste, el numero debe ser mayor!: "
+
+                bindingGuessGame.attemptCounter.text = "Attempt Counter: " + attemptCounter
+                return numeroSugerido
+            }
         }
         else
         {
@@ -60,39 +81,36 @@ class GuessGame : AppCompatActivity()
         Log.i("seguirJugando", "Entrada")
         Log.i("seguirJugando", "Numero retornado: $numeroRetornado")
 
-        if (numeroRetornado > numeroAleatorio)
-        bindingGuessGame.gameStatus.text = "El numero " + numeroRetornado + " es mayor"
-
-        if (numeroRetornado < numeroAleatorio)
-            bindingGuessGame.gameStatus.text = "El numero " + numeroRetornado + " es menor"
-
 
         // Logica general
         bindingGuessGame.playButton.setOnClickListener{
-            if (numeroRetornado < 0)
+
+            var numeroAJugar = bindingGuessGame.suggestedNumber.text.toString().toInt()
+
+            if (numeroAJugar < 0)
             {
                 bindingGuessGame.gameStatus.text = "Tu numero es demasiado pequeño"
                 Toast.makeText(baseContext, "Recuerda, el numero debe empieza en 0", Toast.LENGTH_LONG).show()
             }
-            else if (numeroRetornado > 1000)
+            else if (numeroAJugar > 1000)
             {
                 bindingGuessGame.gameStatus.text = ("Tu numero es demasiado grande")
                 Toast.makeText(baseContext, "Recuerda, el numero debe terminar en 1000", Toast.LENGTH_LONG).show()
             }
-            else if (numeroRetornado > numeroAleatorio && numeroRetornado <= 1000)
+            else if (numeroAJugar > numeroAleatorio && numeroAJugar <= 1000)
             {
                 bindingGuessGame.gameStatus.text = ("Fallaste, el numero debe ser menor!")
-                Log.i("Numero no adivinado (menor)", "Se pide numero menor, el numero fue $numeroRetornado y se necesita $numeroAleatorio")
+                Log.i("Numero no adivinado (menor)", "Se pide numero menor, el numero fue $numeroAJugar y se necesita $numeroAleatorio")
 
                 attemptCounter = attemptCounter + 1
 
                 bindingGuessGame.attemptCounter.text = "Attempt Counter: " + attemptCounter
                 Log.i("Intentos: ", "Numero de Intentos: $attemptCounter")
             }
-            else if (numeroRetornado < numeroAleatorio && numeroRetornado >= 0)
+            else if (numeroAJugar < numeroAleatorio && numeroAJugar >= 0)
             {
                 bindingGuessGame.gameStatus.text = ("Fallaste, el numero debe ser mayor!")
-                Log.i("Numero no adivinado (mayor)", "Se pide numero mayor, el numero fue $numeroRetornado y se necesita $numeroAleatorio")
+                Log.i("Numero no adivinado (mayor)", "Se pide numero mayor, el numero fue $numeroAJugar y se necesita $numeroAleatorio")
 
                 attemptCounter = attemptCounter + 1
 
@@ -102,7 +120,7 @@ class GuessGame : AppCompatActivity()
             else
             {
                 bindingGuessGame.gameStatus.text = ("GANASTE! El numero era $numeroAleatorio")
-                bindingGuessGame.attemptCounter.text = ("Numero de Intentos: $numeroAleatorio")
+                bindingGuessGame.attemptCounter.text = ("Numero de Intentos: $attemptCounter")
 
                 Log.i("Estado del juego: ", "Finalizado :D")
             }
