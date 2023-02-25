@@ -1,5 +1,6 @@
 package javeriana.edu.co.taller1_appdeactividades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -56,10 +57,22 @@ class MainActivity : AppCompatActivity()
     {
         Log.i("Guessing Numbers", "Entrada")
 
-        var numeroIngresado = bindingMain.numeroAdivinadoText.text
-        Log.i("Guessing Numbers", "Imprimir numero" + numeroIngresado)
+        var numeroIngresado = bindingMain.numeroAdivinadoText.text.toString().toInt()
 
-        // TODO: Ir a la siguiente actividad (GuessGame) y verificar tamaño del numero
+        //Log.i("Guessing Numbers", "Imprimir numero " + numeroIngresado)
+        Log.i("Guessing Numbers", "Imprimir numero $numeroIngresado")
+
+        // Verificar que el numero ingresado sea correcto
+        if (numeroIngresado in 0..1000)
+        {
+            val pasarAGuessingGame = Intent(this, GuessGame::class.java)
+            pasarAGuessingGame.putExtra("numeroSugerido", numeroIngresado )
+            //startActivity(Intent(this, GuessGame::class.java))
+        }
+        else
+        {
+            Toast.makeText(baseContext, "Solo números entre el 0 y el 1000", Toast.LENGTH_LONG).show()
+        }
     }
 
 
