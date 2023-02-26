@@ -30,6 +30,19 @@ class RandomGreet : AppCompatActivity()
     // Imprimir idioma
     fun imprimirIdioma(idiomaSeleccionado: String)
     {
-        bindingRandomGreet.idiomaSeleccionado.text = idiomaSeleccionado
+        // Hacer un "switch"
+        when (idiomaSeleccionado)
+        {
+            "Español"    -> bindingRandomGreet.idiomaSeleccionado.text = "Hola!"
+            "Inglés"     -> bindingRandomGreet.idiomaSeleccionado.text = "Hello!"
+            "Francés"    -> bindingRandomGreet.idiomaSeleccionado.text = "Bonjour!"
+            "Alemán"     -> bindingRandomGreet.idiomaSeleccionado.text = "Guten Morgen!"
+            "Portugués"  -> bindingRandomGreet.idiomaSeleccionado.text = "Olá!"
+            "Italiano"   -> bindingRandomGreet.idiomaSeleccionado.text = "Buongiorno!"
+            "Toki pona"  -> bindingRandomGreet.idiomaSeleccionado.text = "Kama Pona!"
+            "Japonés"    -> bindingRandomGreet.idiomaSeleccionado.text = "おはよう!"
+            "Ruso"       -> bindingRandomGreet.idiomaSeleccionado.text = "Доброе утро!"
+            "Esperanto"  -> bindingRandomGreet.idiomaSeleccionado.text = "Bonan matenon!"
+        }
     }
 }
