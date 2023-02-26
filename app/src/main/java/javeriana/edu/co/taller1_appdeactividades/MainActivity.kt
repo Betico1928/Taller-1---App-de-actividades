@@ -4,13 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity()
+class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 {
     private lateinit var bindingMain : ActivityMainBinding
+    private lateinit var adapterLanguages : ArrayAdapter<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -41,18 +44,15 @@ class MainActivity : AppCompatActivity()
             fibonacci()
         }
 
-        bindingMain.randomGreetButton.setOnClickListener{
-            Log.i("Inicializar botones", "Ir a random Greet")
-            randomGreet()
-        }
 
         // Inicializar Spinner
-        val adapterLanguages = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item)
+        adapterLanguages = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
         adapterLanguages.addAll(listOf("Español", "Inglés", "Francés", "Alemán", "Portugués", "Italiano", "Toki pona", "Japonés", "Ruso", "Esperanto"))
 
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
+        bindingMain.spinnerRandomGreet.onItemSelectedListener = this
         bindingMain.spinnerRandomGreet.adapter = adapterLanguages
+
+
 
         bindingMain.countriesButton.setOnClickListener{
             Log.i("Inicializar botones", "Ir a countries")
@@ -107,19 +107,27 @@ class MainActivity : AppCompatActivity()
     }
 
 
-    private fun randomGreet()
-    {
-        Log.i("Random Greet", "Entrada")
-
-        var idiomaSeleccionado = bindingMain.spinnerRandomGreet.onItemSelectedListener
-
-        Log.i("Random Greet", idiomaSeleccionado.toString())
-    }
-
     private fun countries()
     {
         Log.i("Countries", "Entrada")
 
         // TODO: Pasar a la siguiente actividad (CountriesActivity)
+    }
+
+
+    //Para seleccionar del Spinner
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        var idiomaSeleccionado = adapterLanguages.getItem(position)
+        Log.i("Random Greet", "Seleccion" + idiomaSeleccionado)
+
+        bindingMain.randomGreetButton.setOnClickListener{
+            Log.i("Inicializar botones", "Ir a random Greet")
+            //var idiomaSeleccionado = onItemSelected(p2 = Int)
+            Log.i("Ya no mas", "El idioma es: " + idiomaSeleccionado)
+        }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }
