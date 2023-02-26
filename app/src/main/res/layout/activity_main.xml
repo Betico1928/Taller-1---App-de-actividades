@@ -45,7 +45,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,17 +64,34 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Fibonacci" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/factorialLastUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Factorial Last Use:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/fibonacciLastUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fibonacci Last Use"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/factorialLastUse" />
 
     <Button
         android:id="@+id/randomGreetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:text="Random Greet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/fibonacciLastUse" />
 
     <Spinner
         android:id="@+id/spinnerRandomGreet"
@@ -88,11 +105,10 @@
         android:id="@+id/countriesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Countries"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerRandomGreet"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRandomGreet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

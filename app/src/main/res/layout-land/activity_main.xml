@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
+    android:paddingHorizontal="50dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -19,27 +19,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/guessGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Guess Game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/numeroAdivinadoText"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="1 - 1000"
-        android:inputType="phone"
-        android:textAlignment="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessGameButton" />
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <Button
+            android:id="@+id/guessGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guess Game" />
+
+        <EditText
+            android:id="@+id/numeroAdivinadoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="1 - 1000"
+            android:inputType="phone"
+            android:textAlignment="center" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -47,16 +51,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroAdivinadoText">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        tools:layout_editor_absoluteX="20dp">
 
         <Button
             android:id="@+id/factorialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Factorial" />
 
         <Button
             android:id="@+id/fibonacciButton"
@@ -64,35 +67,55 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Fibonacci" />
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/randomGreetButton"
+    <TextView
+        android:id="@+id/factorialLastUse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Random Greet"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Factorial Last Use:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <Spinner
-        android:id="@+id/spinnerRandomGreet"
+    <TextView
+        android:id="@+id/fibonacciLastUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fibonacci Last Use"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomGreetButton" />
+        app:layout_constraintTop_toBottomOf="@+id/factorialLastUse">
+
+        <Button
+            android:id="@+id/randomGreetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Random Greet" />
+
+        <Spinner
+            android:id="@+id/spinnerRandomGreet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/countriesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Countries"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerRandomGreet"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
