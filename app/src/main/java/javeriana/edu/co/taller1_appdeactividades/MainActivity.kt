@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     {
         // Guessing Number
         bindingMain.guessGameButton.setOnClickListener{
-            Log.i("Inicializar botones", "Ir a guessingNumbers")
+            Log.i("Main", "Ir a guessingNumbers")
             guessingNumbers()
         }
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
         // Countries
         bindingMain.countriesButton.setOnClickListener{
-            Log.i("Inicializar botones", "Ir a countries")
+            Log.i("Main", "Ir a countries")
             countries()
         }
     }
@@ -51,21 +51,21 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     private fun guessingNumbers()
     {
-        Log.i("Guessing Numbers", "Entrada")
+        Log.i("Main", "Entrada - Guessing Numbers")
 
         val numeroIngresado = bindingMain.numeroAdivinadoText.text.toString().toInt()
 
         //Log.i("Guessing Numbers", "Imprimir numero " + numeroIngresado)
-        Log.i("Guessing Numbers", "Imprimir numero $numeroIngresado")
+        Log.i("Main", "Imprimir numero ingresado para adivinar: $numeroIngresado")
 
         // Verificar que el numero ingresado sea correcto
         if (numeroIngresado in 0..1000)
         {
             Log.i("Guessing Numbers", "Entrada al if")
             val pasarAGuessingGame = Intent(this, GuessGame::class.java)
-            Log.i("Guessing Numbers", "Flag 1")
+            Log.i("Main", "Flag 1 - Guessing Numbers")
             pasarAGuessingGame.putExtra("numeroSugerido", numeroIngresado )
-            Log.i("Guessing Numbers", "Flag 2")
+            Log.i("Main", "Flag 2 - Guessing Numbers")
             //startActivity(Intent(this, GuessGame::class.java))
 
             startActivity(pasarAGuessingGame)
@@ -80,9 +80,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     private fun countries()
     {
-        Log.i("Countries", "Entrada")
+        Log.i("Main", "Entrada - Countries")
 
-        // TODO: Pasar a la siguiente actividad (CountriesActivity)
+        TODO("Pasar a la siguiente actividad (CountriesActivity) con API")
     }
 
 
@@ -99,6 +99,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             Log.i("Random Greet", "El idioma es: $idiomaSeleccionado")
 
             // Pasarlo a la actividad random greet.
+            val pasarARandomGret = Intent(this, RandomGreet::class.java)
+            Log.i("Main", "Flag 1 - Random Greet")
+            pasarARandomGret.putExtra("idiomaSeleccionado", idiomaSeleccionado )
+            Log.i("Main", "Flag 2 - Random Greet")
         }
     }
 
