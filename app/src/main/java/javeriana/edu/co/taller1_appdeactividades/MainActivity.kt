@@ -98,11 +98,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             //var idiomaSeleccionado = onItemSelected(p2 = Int)
             Log.i("Random Greet", "El idioma es: $idiomaSeleccionado")
 
+
             // Pasarlo a la actividad random greet.
             val pasarARandomGret = Intent(this, RandomGreet::class.java)
             Log.i("Main", "Flag 1 - Random Greet")
             pasarARandomGret.putExtra("idiomaSeleccionado", idiomaSeleccionado )
             Log.i("Main", "Flag 2 - Random Greet")
+
+            startActivity(pasarARandomGret)
         }
     }
 
