@@ -33,18 +33,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             guessingNumbers()
         }
 
-        // Factorial
-        bindingMain.factorialButton.setOnClickListener{
-            Log.i("Inicializar botones", "Ir a Factorial")
-            factorial()
-        }
-
-        bindingMain.fibonacciButton.setOnClickListener{
-            Log.i("Inicializar botones", "Ir a Fibonacci")
-            fibonacci()
-        }
-
-
         // Inicializar Spinner
         adapterLanguages = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
         adapterLanguages.addAll(listOf("Español", "Inglés", "Francés", "Alemán", "Portugués", "Italiano", "Toki pona", "Japonés", "Ruso", "Esperanto"))
@@ -52,8 +40,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         bindingMain.spinnerRandomGreet.onItemSelectedListener = this
         bindingMain.spinnerRandomGreet.adapter = adapterLanguages
 
-
-
+        // Countries
         bindingMain.countriesButton.setOnClickListener{
             Log.i("Inicializar botones", "Ir a countries")
             countries()
@@ -88,22 +75,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             Toast.makeText(baseContext, "Solo números entre el 0 y el 1000", Toast.LENGTH_LONG).show()
         }
 
-    }
-
-
-    private fun factorial()
-    {
-        Log.i("Factorial", "Entrada")
-
-        // TODO: Ir a la siguiente actividad (FactorialActivity)
-    }
-
-
-    private fun fibonacci()
-    {
-        Log.i("Fibonacci", "Entrada")
-
-        // TODO: Ir a la siguiente actividad (FibonacciActivity)
     }
 
 

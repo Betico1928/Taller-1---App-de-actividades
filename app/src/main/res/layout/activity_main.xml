@@ -41,57 +41,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guessGameButton" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numeroAdivinadoText">
-
-        <Button
-            android:id="@+id/factorialButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Factorial" />
-
-        <Button
-            android:id="@+id/fibonacciButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Fibonacci" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/factorialLastUse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Factorial Last Use:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <TextView
-        android:id="@+id/fibonacciLastUse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fibonacci Last Use"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/factorialLastUse" />
-
     <Button
         android:id="@+id/randomGreetButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Random Greet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fibonacciLastUse" />
+        app:layout_constraintTop_toBottomOf="@+id/numeroAdivinadoText" />
 
     <Spinner
         android:id="@+id/spinnerRandomGreet"
@@ -105,7 +63,7 @@
         android:id="@+id/countriesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Countries"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
