@@ -126,6 +126,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
             //var idiomaSeleccionado = onItemSelected(p2 = Int)
             Log.i("Random Greet", "El idioma es: $idiomaSeleccionado")
+
+            // Pasarlo a la actividad random greet.
         }
     }
 
