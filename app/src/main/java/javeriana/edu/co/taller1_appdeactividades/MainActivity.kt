@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     {
         Log.i("Guessing Numbers", "Entrada")
 
-        var numeroIngresado = bindingMain.numeroAdivinadoText.text.toString().toInt()
+        val numeroIngresado = bindingMain.numeroAdivinadoText.text.toString().toInt()
 
         //Log.i("Guessing Numbers", "Imprimir numero " + numeroIngresado)
         Log.i("Guessing Numbers", "Imprimir numero $numeroIngresado")
@@ -116,8 +116,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
 
     //Para seleccionar del Spinner
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        var idiomaSeleccionado = adapterLanguages.getItem(position)
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long)
+    {
+        val idiomaSeleccionado = adapterLanguages.getItem(position)
+
         Log.i("Random Greet", "Seleccion inicial: $idiomaSeleccionado")
 
         bindingMain.randomGreetButton.setOnClickListener{
