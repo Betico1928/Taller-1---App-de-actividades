@@ -118,12 +118,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     //Para seleccionar del Spinner
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         var idiomaSeleccionado = adapterLanguages.getItem(position)
-        Log.i("Random Greet", "Seleccion" + idiomaSeleccionado)
+        Log.i("Random Greet", "Seleccion inicial: $idiomaSeleccionado")
 
         bindingMain.randomGreetButton.setOnClickListener{
-            Log.i("Inicializar botones", "Ir a random Greet")
+
             //var idiomaSeleccionado = onItemSelected(p2 = Int)
-            Log.i("Ya no mas", "El idioma es: " + idiomaSeleccionado)
+            Log.i("Random Greet", "El idioma es: $idiomaSeleccionado")
         }
     }
 
