@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.view.get
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity()
@@ -44,6 +46,13 @@ class MainActivity : AppCompatActivity()
             Log.i("Inicializar botones", "Ir a random Greet")
             randomGreet()
         }
+
+        // Inicializar Spinner
+        val idiomas = listOf("Español", "Inglés", "Francés", "Alemán", "Portugués", "Italiano", "Toki pona", "Japonés", "Ruso", "Esperanto")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, idiomas)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        bindingMain.spinnerRandomGreet.adapter = adapter
 
         bindingMain.countriesButton.setOnClickListener{
             Log.i("Inicializar botones", "Ir a countries")
@@ -102,7 +111,7 @@ class MainActivity : AppCompatActivity()
     {
         Log.i("Random Greet", "Entrada")
 
-        // TODO: Verificar el idioma seleccionado en el spinner y pasar a la actividad (RandomGreet)
+        bindingMain.spinnerRandomGreet.onItemSelectedListener =
     }
 
     private fun countries()
