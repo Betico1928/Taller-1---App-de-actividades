@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityRandomGreetBinding
 
-class RandomGreet : AppCompatActivity()
+class RandomGreetActivity : AppCompatActivity()
 {
     private lateinit var bindingRandomGreet : ActivityRandomGreetBinding
 

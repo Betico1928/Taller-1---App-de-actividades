@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityGuessGameBinding
 import java.util.*
 
-class GuessGame : AppCompatActivity()
+class GuessGameActivity : AppCompatActivity()
 {
     private lateinit var bindingGuessGame: ActivityGuessGameBinding
 

@@ -2,15 +2,57 @@ package javeriana.edu.co.taller1_appdeactividades
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityCountriesBinding
 
 
 class CountriesActivity : AppCompatActivity()
 {
+    private lateinit var bindingCountries: ActivityCountriesBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
+        bindingCountries = ActivityCountriesBinding.inflate(layoutInflater)
+        setContentView(bindingCountries.root)
+
+        //
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 class CountriesActivity : AppCompatActivity() {

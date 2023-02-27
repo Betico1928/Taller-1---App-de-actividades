@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         if (numeroIngresado in 0..1000)
         {
             Log.i("Guessing Numbers", "Entrada al if")
-            val pasarAGuessingGame = Intent(this, GuessGame::class.java)
+            val pasarAGuessingGame = Intent(this, GuessGameActivity::class.java)
             Log.i("Main", "Flag 1 - Guessing Numbers")
             pasarAGuessingGame.putExtra("numeroSugerido", numeroIngresado )
             Log.i("Main", "Flag 2 - Guessing Numbers")
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             randomGreetLastUse = getCurrentTime()
 
             // Pasarlo a la actividad random greet.
-            val pasarARandomGret = Intent(this, RandomGreet::class.java)
+            val pasarARandomGret = Intent(this, RandomGreetActivity::class.java)
             Log.i("Main", "Flag 1 - Random Greet")
             pasarARandomGret.putExtra("idiomaSeleccionado", idiomaSeleccionado )
             Log.i("Main", "Flag 2 - Random Greet")
