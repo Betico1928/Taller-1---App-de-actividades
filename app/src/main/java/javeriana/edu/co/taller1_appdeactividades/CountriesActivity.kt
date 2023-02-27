@@ -1,73 +1,14 @@
 package javeriana.edu.co.taller1_appdeactividades
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-//import javeriana.edu.co.taller1_appdeactividades.Assets.pais
-import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityCountriesBinding
-import org.json.JSONObject
-import java.io.InputStream
-import java.nio.charset.Charset
 
 
-
-class CountriesActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCountriesBinding
-    //private lateinit var array: ArrayList<pais>
-
+class CountriesActivity : AppCompatActivity()
+{
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
-        binding = ActivityCountriesBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        loadArrayTwo()
-        //val adapter = ArrayAdapter<pais>(this, android.R.layout.simple_list_item_1, array)
-        //binding.listaDePaises.adapter = adapter
-
-
-        binding.listaDePaises.setOnItemClickListener { p1, p2, p3, p4 ->
-            // Crear un intent y agregar los datos que queremos pasar como extras
-            //val pais = array[p3]
-            val intent = Intent(this, mostrarPaisActivity::class.java).apply {
-                //putExtra("capital", pais.capital)
-                //putExtra("nombrePais", pais.nombrePais)
-                //putExtra("nombrePaisint", pais.nombrePaisInt)
-                //putExtra("sigla", pais.sigla)
-            }
-
-
-
-// Iniciar la actividad mostrarPaisActivity utilizando el intent
-            startActivity(intent)
-        }
-    }
-
-    fun loadCountries(): String {
-        var json: String
-        var istr: InputStream = this.assets.open("paises.json")
-        val size = istr.available()
-        val byteArray = ByteArray(size)
-        istr.read(byteArray)
-        istr.close()
-        json = String(byteArray, Charset.defaultCharset())
-        return json
-    }
-
-    fun loadArrayTwo() {
-        //array = ArrayList<pais>()
-        val jsonObject = JSONObject(loadCountries())
-        var arrayCountries = jsonObject.getJSONArray("paises")
-        for (i in 0 until arrayCountries.length()) {
-            //val countryObject = arrayCountries.getJSONObject(i)
-            //val pais = pais(
-                //countryObject.get("capital").toString(),
-                //countryObject.get("nombre_pais").toString(),
-                //countryObject.get("nombre_pais_int").toString(),
-                //countryObject.get("sigla").toString()
-           // )
-            //array.add(pais)
-        }
     }
 }
 
