@@ -1,5 +1,6 @@
 package javeriana.edu.co.taller1_appdeactividades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,15 @@ class CountriesActivity : AppCompatActivity() {
         cargarArregloTipoCountry()
         val adapter = ArrayAdapter<Country>(this, android.R.layout.simple_list_item_1, arregloPais)
         binding.listaDePaises.adapter=adapter
+
+        binding.listaDePaises.setOnItemClickListener { p1, p2, p3, p4 ->
+            val paisSeleccionado = arregloPais[p3]
+
+            val pasarAMostrarPaisActivity = Intent(this, mostrarPaisActivity::class.java)
+            Log.i("ContriesActivity", "Flag 1")
+            pasarAMostrarPaisActivity.putExtra("paisSeleccionado", paisSeleccionado )
+            Log.i("ContriesActivity", "Flag 2")
+        }
     }
 
     fun loadCountries() : String{
