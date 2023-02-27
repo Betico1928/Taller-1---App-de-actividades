@@ -9,11 +9,21 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityMainBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 {
     private lateinit var bindingMain : ActivityMainBinding
+
+    // Adapter para el Spinner
     private lateinit var adapterLanguages : ArrayAdapter<String>
+
+    // Variables para los counters de entradas
+    private var guessGameCount = 0
+    private var randomGreetCount = 0
+    private var guessGameLastUse = ""
+    private var randomGreetLastUse = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -27,11 +37,29 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     private fun inicializarElementos()
     {
+
+        // Inicializar el contador y la hora/fecha de la última utilización
+        guessGameCount = 0
+        randomGreetCount = 0
+        guessGameLastUse = ""
+        randomGreetLastUse = ""
+
+        var status = "Juego de adivinanza: $guessGameCount - Último uso: $guessGameLastUse\n" + "Saludos aleatorios: $randomGreetCount - Último uso: $randomGreetLastUse"
+
+        bindingMain.statusText.text  = status
+
+
         // Guessing Number
         bindingMain.guessGameButton.setOnClickListener{
             Log.i("Main", "Ir a guessingNumbers")
+
+            // Revisar los ingresos
+            guessGameCount++
+            guessGameLastUse = getCurrentTime()
+
             guessingNumbers()
         }
+
 
         // Inicializar Spinner
         adapterLanguages = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
@@ -39,6 +67,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
         bindingMain.spinnerRandomGreet.onItemSelectedListener = this
         bindingMain.spinnerRandomGreet.adapter = adapterLanguages
+
 
         // Countries
         bindingMain.countriesButton.setOnClickListener{
@@ -98,6 +127,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
             //var idiomaSeleccionado = onItemSelected(p2 = Int)
             Log.i("Random Greet", "El idioma es: $idiomaSeleccionado")
 
+            // Revisar los ingresos
+            randomGreetCount++
+            randomGreetLastUse = getCurrentTime()
 
             // Pasarlo a la actividad random greet.
             val pasarARandomGret = Intent(this, RandomGreet::class.java)
@@ -111,5 +143,26 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+
+
+
+
+    private fun getCurrentTime(): String {
+        // Obtener la hora y fecha actual en un formato legible
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val date = Date()
+        return dateFormat.format(date)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // Mostrar el contador y la hora/fecha de la última utilización
+        val countText = "Juego de adivinanza: $guessGameCount - Último uso: $guessGameLastUse\n" +
+                "Saludos aleatorios: $randomGreetCount - Último uso: $randomGreetLastUse"
+
+        bindingMain.statusText.text = countText
     }
 }
