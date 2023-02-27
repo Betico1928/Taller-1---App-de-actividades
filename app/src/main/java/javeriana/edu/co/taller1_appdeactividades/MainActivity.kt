@@ -112,7 +112,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
     {
         Log.i("Main", "Entrada - Countries")
 
-        TODO("Pasar a la siguiente actividad (CountriesActivity) con API")
+        // Pasar a la siguiente actividad
+        val pasarACountries = Intent(this, CountriesActivity::class.java)
+        startActivity(pasarACountries)
     }
 
 
