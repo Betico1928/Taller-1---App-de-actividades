@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener
         bindingMain.statusText.text  = status
 
 
+
         // Guessing Number
         bindingMain.guessGameButton.setOnClickListener{
             Log.i("Main", "Ir a guessingNumbers")
