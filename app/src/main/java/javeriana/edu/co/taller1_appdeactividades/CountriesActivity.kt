@@ -1,24 +1,55 @@
 package javeriana.edu.co.taller1_appdeactividades
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityCountriesBinding
+import org.json.JSONObject
+import java.io.InputStream
+import java.nio.charset.Charset
 
+class CountriesActivity : AppCompatActivity() {
 
-class CountriesActivity : AppCompatActivity()
-{
     private lateinit var bindingCountries: ActivityCountriesBinding
+    private lateinit var countryList: ArrayList<String>
 
-
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingCountries = ActivityCountriesBinding.inflate(layoutInflater)
         setContentView(bindingCountries.root)
+        loadCountryList()
+        val adaptadorDePaises = ArrayAdapter(this, android.R.layout.simple_list_item_1, countryList)
+        bindingCountries.listaDePaises.adapter = adaptadorDePaises
+    }
 
-        //
+    private fun loadCountryList()
+    {
+        countryList = ArrayList<String>()
+        val jsonObject = JSONObject(loadCountriesFromAssets())
+        val countriesArray = jsonObject.getJSONArray("paises")
+        for (i in 0 until countriesArray.length()) {
+            val country = countriesArray.getJSONObject(i)
+            val countryName = country.get("nombre_pais").toString()
+            countryList.add(countryName)
+        }
+    }
+
+    private fun loadCountriesFromAssets(): String {
+        var json = ""
+        try {
+            val inputStream: InputStream = assets.open("paises.json")
+            val size = inputStream.available()
+            val buffer = ByteArray(size)
+            inputStream.read(buffer)
+            inputStream.close()
+            json = String(buffer, Charset.defaultCharset())
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+        return json
     }
 }
+
 
 
 
