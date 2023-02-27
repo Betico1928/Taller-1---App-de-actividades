@@ -1,9 +1,14 @@
 package javeriana.edu.co.taller1_appdeactividades
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityCountriesBinding
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.InputStream
 import java.nio.charset.Charset
@@ -17,13 +22,35 @@ class CountriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingCountries = ActivityCountriesBinding.inflate(layoutInflater)
         setContentView(bindingCountries.root)
+
         loadCountryList()
+
         val adaptadorDePaises = ArrayAdapter(this, android.R.layout.simple_list_item_1, countryList)
         bindingCountries.listaDePaises.adapter = adaptadorDePaises
+
+        bindingCountries.listaDePaises.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+
+                val selectedCountry = countryList[position]
+                Toast.makeText(this, "Selected country: $selectedCountry", Toast.LENGTH_SHORT).show()
+
+                // Flag #1: Imprimir en la consola
+                println("Selected country: $selectedCountry")
+                // Flag #1: Imprimir en el log
+                Log.i("SelectedCountry", "Selected country: $selectedCountry")
+
+                // Pasarle el pais a mostrar pais
+                val pasarAMostrarPais = Intent(this, MostrarPaisActivity::class.java)
+                Log.i("CountriesActivity", "Flag #1 - onCreate")
+                pasarAMostrarPais.putExtra("paisSeleccionado", selectedCountry )
+                Log.i("CountriesActivity", "Flag #2 - onCreate")
+                //startActivity(Intent(this, GuessGame::class.java))
+
+                startActivity(pasarAMostrarPais)
+            }
     }
 
-    private fun loadCountryList()
-    {
+    private fun loadCountryList() {
         countryList = ArrayList<String>()
         val jsonObject = JSONObject(loadCountriesFromAssets())
         val countriesArray = jsonObject.getJSONArray("paises")
@@ -49,6 +76,7 @@ class CountriesActivity : AppCompatActivity() {
         return json
     }
 }
+
 
 
 
