@@ -32,7 +32,7 @@ class CountriesActivity : AppCompatActivity() {
             AdapterView.OnItemClickListener { _, _, position, _ ->
 
                 val selectedCountry = countryList[position]
-                Toast.makeText(this, "Selected country: $selectedCountry", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Selected country: $selectedCountry", Toast.LENGTH_LONG).show()
 
                 // Flag #1: Imprimir en la consola
                 println("Selected country: $selectedCountry")

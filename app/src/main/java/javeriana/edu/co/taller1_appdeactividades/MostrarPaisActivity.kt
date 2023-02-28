@@ -3,6 +3,7 @@ package javeriana.edu.co.taller1_appdeactividades
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -10,6 +11,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 import javeriana.edu.co.taller1_appdeactividades.databinding.ActivityMostrarPaisBinding
 import org.json.JSONObject
 import java.io.*
@@ -25,7 +27,6 @@ data class Pais(
 class MostrarPaisActivity : AppCompatActivity()
 {
     private lateinit var bindingMostrarPais: ActivityMostrarPaisBinding
-
 
     fun copyJsonToInternalStorage(context: Context, fileName: String) {
         val inputStream = context.assets.open(fileName)
@@ -73,15 +74,29 @@ class MostrarPaisActivity : AppCompatActivity()
             val nombrePaisInt = pais.getString("nombre_pais_int")
             val sigla = pais.getString("sigla")
 
-            bindingMostrarPais.capital.text = capital
-            bindingMostrarPais.nombrePais.text = nombrePais
-            bindingMostrarPais.nombrePaisInt.text = nombrePaisInt
-            bindingMostrarPais.sigla.text = sigla
+            mostrarDatos(capital, nombrePais, nombrePaisInt, sigla)
+
         } else {
+            Log.i("MostrarPaisActivity", "Pais no encontrado")
             Toast.makeText(this, "País no encontrado", Toast.LENGTH_SHORT).show()
         }
     }
 
+    fun mostrarDatos(capital: String, nombrePais: String, nombrePaisInt: String, sigla: String)
+    {
+        bindingMostrarPais.capital.text = capital
+        bindingMostrarPais.nombrePais.text = nombrePais
+        bindingMostrarPais.nombrePaisInt.text = nombrePaisInt
+        bindingMostrarPais.sigla.text = sigla
+
+        // Mostrar bandera utilizando la libreria Picasso
+        mostrarBandera(sigla)
+    }
+
+    fun mostrarBandera(siglaPais: String) {
+        //val url = " "https://countryflagsapi.com/png/"$siglaPais""
+        Picasso.get().load("https://countryflagsapi.com/png/"+siglaPais).into(bindingMostrarPais.imageViewBandera)
+    }
 
 
 
